@@ -24,11 +24,11 @@
 # Use args for Tomcat image label to allow image builder to choose alternatives
 # such as `--build-arg TOMCAT_JRE=jre8-alpine`
 #
-ARG TOMCAT_VERSION=8.5
-ARG TOMCAT_JRE=jdk8
+ARG TOMCAT_VERSION=9
+ARG TOMCAT_JRE=jre11-slim
 
 # Use official maven image for the build
-FROM maven:3-jdk-8 AS builder
+FROM maven:3-jdk-8-alpine AS builder
 
 # Use args to build radius auth extension such as
 # `--build-arg BUILD_PROFILE=lgpl-extensions`
