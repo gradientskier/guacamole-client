@@ -25,10 +25,12 @@
 # such as `--build-arg TOMCAT_JRE=jre8-alpine`
 #
 ARG TOMCAT_VERSION=8.5
-ARG TOMCAT_JRE=jdk8
+# GS: Using Java11 ar runtime, since we built with Java11.
+ARG TOMCAT_JRE=jdk11
 
 # Use official maven image for the build
-FROM maven:3-eclipse-temurin-8-focal AS builder
+# GS: some node dependencies on ARM are built for Java11. Using Java8 causes npm build to fail in guacamole-client/guacamole 
+FROM maven:3-eclipse-temurin-11-focal AS builder
 
 # Use Mozilla's Firefox PPA (newer Ubuntu lacks a "firefox-esr" package and
 # provides only a transitional "firefox" package that actually requires Snap
